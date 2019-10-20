@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get upgrade
-    apt-get install -y make gcc g++ python
+    apt-get install -y make gcc g++ python cmake
   SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
@@ -18,6 +18,12 @@ Vagrant.configure("2") do |config|
     cp /vagrant/os/startup_simulator.py /home/vagrant/
   SHELL
 
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get clean
+    sudo dd if=/dev/zero of=/EMPTY bs=1M
+    sudo rm -f /EMPTY
+    cat /dev/null > ~/.bash_history && history -c
+  SHELL
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
