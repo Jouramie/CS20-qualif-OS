@@ -1,0 +1,10 @@
+*.o
+*.cmd
+*.tmp*
+*.symvers
+*.order
+*ngelctl
+*.ko
+*.mod*
+*.log
+.vagrant

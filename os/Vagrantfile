@@ -1,0 +1,8 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/xenial64"
+    config.vm.synced_folder "./os", "/home/vagrant/"
+  
+    config.vm.network "forwarded_port", guest: 4321, host: 4321, host_ip: "127.0.0.1"
+
+    config.vm.post_up_message = "This is the start up message!"
+end
