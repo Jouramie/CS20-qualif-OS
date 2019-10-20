@@ -1,13 +1,23 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
-  config.vm.synced_folder "os", "/home/vagrant/os"
 
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get upgrade
-    apt-get install -y make gcc
-    /home/vagrant/os/private/setup.sh
+    apt-get install -y make gcc g++ python
   SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    cd /vagrant/os/private
+    make
+    sudo make install
+    cp /vagrant/os/csgames.c /home/vagrant/
+    cp /vagrant/os/poop.pdf /home/vagrant/
+    cp /vagrant/os/readme.en.md /home/vagrant/
+    cp /vagrant/os/readme.fr.md /home/vagrant/
+    cp /vagrant/os/startup_simulator.py /home/vagrant/
+  SHELL
+
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,

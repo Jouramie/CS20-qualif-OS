@@ -4,5 +4,5 @@ Vagrant.configure("2") do |config|
   
     config.vm.network "forwarded_port", guest: 4321, host: 4321, host_ip: "127.0.0.1"
 
-    config.vm.post_up_message = "This is the start up message!"
+    config.vm.post_up_message = "Toutes les informations pour débuter les compétitions se trouvent dans le dossier 'os' qui vient d'être créé.\n `vagrant ssh` pour entrer sur la vm."
 end
