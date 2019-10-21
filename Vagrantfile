@@ -7,6 +7,10 @@ Vagrant.configure("2") do |config|
     apt-get install -y make gcc g++ python cmake
   SHELL
 
+  config.vm.provider "virtualbox" do |vbox|
+    vbox.customize ["modifyvm", :id, "--uartmode1", "disconnected"] 
+  end
+
   config.vm.provision "shell", inline: <<-SHELL
     cd /vagrant/os/private
     make
